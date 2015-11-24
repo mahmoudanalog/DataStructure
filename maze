@@ -1,0 +1,105 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication1;
+import java.util.*;
+/**
+ *
+ * @author Mahmoudanalog
+ */
+public class Maze {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        int[][] arr={{1,1,1,0,1,1,1},{1,0,0,0,0,0,1},{1,0,1,1,0,1,1},{1,0,1,1,0,1,1},{1,0,0,1,1,1,1},{1,1,0,1,1,1,1}};
+        int lengthi=6,lengthj=7;
+        int starti=0;
+        int startj=3;
+        int endi=5;
+        int endj=2;
+         Maze a=new Maze();
+         a.print(arr, lengthi, lengthj);
+        Stack istack=new Stack();
+        Stack jstack=new Stack();
+        istack.push(starti);
+        jstack.push(startj);
+        while(true){
+        if((startj+1<lengthj)&&(arr[starti][startj+1]==0)){
+            istack.push(starti);
+            jstack.push(startj);
+            arr[starti][startj]=5;
+            startj++;
+             a.print(arr, lengthi, lengthj);
+             if(starti==endi&&startj==endj){
+             System.out.println("This is way !");
+             break;
+             }
+            continue;
+        }
+       else  if((starti+1<lengthi)&&(arr[starti+1][startj]==0)){
+            istack.push(starti);
+            jstack.push(startj);
+            arr[starti][startj]=5;
+            starti++;
+             a.print(arr, lengthi, lengthj);
+             if(starti==endi&&startj==endj){
+             System.out.println("This is way !");
+             break;
+             }
+            continue;
+        }
+        else  if((startj-1<lengthj)&&(arr[starti][startj-1]==0)){
+            istack.push(starti);
+            jstack.push(startj);
+            arr[starti][startj]=5;
+            startj--;
+            a.print(arr, lengthi, lengthj);
+            if(starti==endi&&startj==endj){
+             System.out.println("This is way !");
+             break;
+             }
+            continue;
+        }
+        else   if((starti-1<lengthi)&&(arr[starti-1][startj]==0)){
+            istack.push(starti);
+            jstack.push(startj);
+            arr[starti][startj]=5;
+            starti--;
+            a.print(arr, lengthi, lengthj);
+            if(starti==endi&&startj==endj){
+             System.out.println("This is way !");
+             break;
+             }
+            continue;
+        }
+         else
+            if(istack.empty()||jstack.empty()){
+            System.out.println("There isn't any way!");
+            break;
+            }
+            else{
+                arr[starti][startj]=2;
+            starti=(int)istack.pop();
+            startj=(int)jstack.pop();
+            arr[starti][startj]=0;
+            a.print(arr, lengthi, lengthj);
+            continue;
+            }
+        }
+        
+    }
+    public void print(int[][] arr,int maxi,int maxj){
+    for(int i=0;i<maxi;i++){
+    for(int j=0;j<maxj;j++){
+    System.out.print((arr[i][j])+" ");
+    }
+    System.out.print("\n");
+    }
+     System.out.print("\n");
+    }
+}
+s
